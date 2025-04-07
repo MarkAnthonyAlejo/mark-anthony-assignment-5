@@ -1,6 +1,5 @@
 package com.coderscampus.assignment5;
 
-import java.util.Arrays;
 
 public class CustomArrayList<T> implements CustomList<T> {
     Object[] items = new Object[10];
@@ -9,11 +8,19 @@ public class CustomArrayList<T> implements CustomList<T> {
     @Override
     public boolean add(T item) {
         if(size == items.length){
-            items = Arrays.copyOf(items,items.length * 2);
+            resize();
         }
         items[size] = item;
         size++;
         return true;
+    }
+
+    private void resize(){
+        Object[] newArray = new Object[items.length * 2];
+        for (int i = 0; i < items.length; i++) {
+            newArray[i] = items[i];
+        }
+        items = newArray;
     }
 
     @Override
@@ -23,7 +30,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 
     @Override
     public T get(int index) {
-        if(index < 0 || index > size) {
+        if(index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }
         return (T) items[index];

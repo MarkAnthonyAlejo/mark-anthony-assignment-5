@@ -2,7 +2,7 @@ package com.coderscampus.assignment5;
 
 public class CustomArrayApp {
     public static void main(String[] args) {
-        CustomList customList = new CustomArrayList();
+        CustomList<String> customList = new CustomArrayList();
 
         for(int i = 1; i < 20; i++) {
             customList.add("Item " + i);
