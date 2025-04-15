@@ -15,14 +15,6 @@ public class CustomArrayList<T> implements CustomList<T> {
         return true;
     }
 
-    private void resize(){
-        Object[] newArray = new Object[items.length * 2];
-        for (int i = 0; i < items.length; i++) {
-            newArray[i] = items[i];
-        }
-        items = newArray;
-    }
-
     @Override
     public int getSize(){
         return size;
@@ -31,9 +23,17 @@ public class CustomArrayList<T> implements CustomList<T> {
     @Override
     public T get(int index) {
         if(index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+            throw new IndexOutOfBoundsException("Oops index: " + index + "is out of bounds for size: " + size);
         }
         return (T) items[index];
+    }
+
+    private void resize(){
+        Object[] newArray = new Object[items.length * 2];
+        for (int i = 0; i < items.length; i++) {
+            newArray[i] = items[i];
+        }
+        items = newArray;
     }
 
 }
